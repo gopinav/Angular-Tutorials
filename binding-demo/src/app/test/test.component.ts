@@ -12,12 +12,31 @@ import { Component, OnInit } from '@angular/core';
       <h2>{{greetUser()}}</h2>
       <h2>{{url}}</h2>
 
+
       <input [id]="myId" bind-disabled="isDisabled"  type="text" value="Vishwas">
       <input id="{{myId}}" [disabled]="isDisabled"  type="text" value="Vishwas">
       
+
+      <h2 class="text-success">Codevolution</h2>
+      <h2 [class]="successClass">Codevolution</h2>
+      <h2 class="text-special" [class]="successClass">Codevolution</h2>
+      <h2 [class.text-danger]="hasError">Codevolution</h2>
+      <h2 [ngClass]="messageClasses">Message</h2>
+      
+      
     </div>
   `,
-  styles: []
+  styles: [`
+    .text-success{
+      color: green;
+    }
+    .text-danger{
+      color: red;
+    }
+    .text-special{
+      font-style: italic;
+    }
+  `]
 })
 export class TestComponent implements OnInit {
 
@@ -25,6 +44,15 @@ export class TestComponent implements OnInit {
   public url = window.location.href;
   public myId = "testId";
   public isDisabled = true;
+  public successClass = "text-success";
+  public hasError = false;
+  public isSpecial = true;
+  public messageClasses = {
+    "text-success": !this.hasError,
+    "text-danger": this.hasError,
+    "text-special": this.isSpecial
+  }
+
   constructor() { }
 
   ngOnInit() {
