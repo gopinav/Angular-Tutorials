@@ -23,7 +23,10 @@ import { Component, OnInit } from '@angular/core';
       <h2 [class.text-danger]="hasError">Codevolution</h2>
       <h2 [ngClass]="messageClasses">Message</h2>
       
-      
+      <h2 [style.color]="'orange'">Style Binding</h2> 
+      <h2 [style.color]="hasError ? 'red' : 'green'">Style Binding 2</h2>            
+      <h2 [style.color]="highlightColor">Style Binding 3</h2>
+      <h2 [ngStyle]="titleStyles">Style Binding 4</h2>
     </div>
   `,
   styles: [`
@@ -51,6 +54,12 @@ export class TestComponent implements OnInit {
     "text-success": !this.hasError,
     "text-danger": this.hasError,
     "text-special": this.isSpecial
+  }
+
+  public highlightColor = "orange";
+  public titleStyles = {
+    color: "blue",
+    fontStyle: "italic"
   }
 
   constructor() { }
