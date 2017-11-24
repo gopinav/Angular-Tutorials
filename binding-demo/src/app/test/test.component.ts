@@ -27,6 +27,10 @@ import { Component, OnInit } from '@angular/core';
       <h2 [style.color]="hasError ? 'red' : 'green'">Style Binding 2</h2>            
       <h2 [style.color]="highlightColor">Style Binding 3</h2>
       <h2 [ngStyle]="titleStyles">Style Binding 4</h2>
+
+      <button (click)="onClick($event)">Greet</button>
+      <button (click)="greeting = 'Welcome Vishwas'">Greet Vishwas</button> 
+      <h2>{{greeting}}</h2>
     </div>
   `,
   styles: [`
@@ -62,6 +66,8 @@ export class TestComponent implements OnInit {
     fontStyle: "italic"
   }
 
+  public greeting = "";
+
   constructor() { }
 
   ngOnInit() {
@@ -71,6 +77,10 @@ export class TestComponent implements OnInit {
     return "Hello " + this.name;
   }
 
+  onClick(event){
+    console.log(event)
+    this.greeting = event.type;
+  }
   
 
 }
