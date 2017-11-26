@@ -28,9 +28,14 @@ import { Component, OnInit } from '@angular/core';
       <h2 [style.color]="highlightColor">Style Binding 3</h2>
       <h2 [ngStyle]="titleStyles">Style Binding 4</h2>
 
+
       <button (click)="onClick($event)">Greet</button>
       <button (click)="greeting = 'Welcome Vishwas'">Greet Vishwas</button> 
       <h2>{{greeting}}</h2>
+
+
+      <input #myInput type="text">
+      <button (click)="logMessage(myInput.value)">Log</button>
     </div>
   `,
   styles: [`
@@ -67,7 +72,7 @@ export class TestComponent implements OnInit {
   }
 
   public greeting = "";
-
+  
   constructor() { }
 
   ngOnInit() {
@@ -82,5 +87,8 @@ export class TestComponent implements OnInit {
     this.greeting = event.type;
   }
   
+  logMessage(value){
+    console.log(value)
+  }
 
 }
