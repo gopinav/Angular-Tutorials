@@ -36,6 +36,10 @@ import { Component, OnInit } from '@angular/core';
 
       <input #myInput type="text">
       <button (click)="logMessage(myInput.value)">Log</button>
+
+
+      <input type="text" [(ngModel)]="name">
+      {{name}}
     </div>
   `,
   styles: [`
