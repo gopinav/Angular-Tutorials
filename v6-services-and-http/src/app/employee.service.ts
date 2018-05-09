@@ -1,9 +1,10 @@
+
+import {throwError as observableThrowError,  Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { IEmployee } from './employee';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
+import { tap, catchError } from 'rxjs/operators';
+
 
 
 @Injectable()
@@ -15,10 +16,10 @@ export class EmployeeService {
 
   getEmployees(): Observable<IEmployee[]>{
     return this.http.get<IEmployee[]>(this._url)
-                    .catch(this.errorHandler);
+                    .pipe(tap(data => alert(JSON.stringify(data))) , catchError(this.errorHandler))
   }
   errorHandler(error: HttpErrorResponse){
-    return Observable.throw(error.message || "Server Error");
+    return observableThrowError(error.message || "Server Error");
   }
 
 }
