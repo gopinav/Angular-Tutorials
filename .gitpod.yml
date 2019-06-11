@@ -1,0 +1,7 @@
+ports:
+  - port: 4200
+    onOpen: open-preview
+tasks:
+  - before: echo N | npm install -g @angular/cli
+    init: for DIR in `ls -1` ; do cd $DIR && npm install && cd .. ; done
+    command: cd "${DIR:-v6-hello-world}" && ng serve
